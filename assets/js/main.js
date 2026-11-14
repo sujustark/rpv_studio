@@ -37,7 +37,26 @@ document.addEventListener('DOMContentLoaded', () => {
   if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
   if (drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
 
-  // 3. Lightbox Functionality
+  // 3. Scroll Reveal Animation
+  const revealElements = document.querySelectorAll('.section, .service-card, .testimonial-card, .diff-card, .video-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  revealElements.forEach(el => {
+    el.classList.add('reveal-on-scroll');
+    observer.observe(el);
+  });
+
+  // 4. Lightbox Functionality
   const lightboxModal = document.querySelector('.lightbox-modal');
   const lightboxImg = document.querySelector('.lightbox-content img');
   const lightboxCaption = document.querySelector('.lightbox-caption');
@@ -135,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   attachGalleryClicks();
 
-  // 4. Category Filtering for Portfolio / Gallery
+  // 5. Category Filtering for Portfolio / Gallery
   const filterButtons = document.querySelectorAll('.filter-btn');
   const galleryItemsAll = document.querySelectorAll('.gallery-item');
 
@@ -158,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. Video Player Modal
+  // 6. Video Player Modal
   const videoModal = document.querySelector('.video-modal');
   const videoIframe = document.querySelector('.video-modal-inner iframe');
   const videoTriggers = document.querySelectorAll('[data-video-id]');
@@ -193,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 6. Booking / Enquiry Modal
+  // 7. Booking / Enquiry Modal
   const bookingModal = document.querySelector('.booking-modal');
   const bookingTriggers = document.querySelectorAll('.open-booking-modal');
   const bookingClose = document.querySelector('.booking-modal-close');
@@ -246,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 7. Contact Page Form Submission
+  // 8. Contact Page Form Submission
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -260,4 +279,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
