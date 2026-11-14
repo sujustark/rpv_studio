@@ -1,0 +1,21 @@
+{
+  "name": "rpv-studio",
+  "version": "2.0.0",
+  "description": "RPV Studio — Premium Wedding & Portrait Photography in Chennai",
+  "scripts": {
+    "dev": "serve . -p 3000",
+    "start": "serve . -p 3000"
+  },
+  "keywords": [
+    "photography",
+    "portfolio",
+    "wedding-photography",
+    "chennai",
+    "studio"
+  ],
+  "author": "RPV Studio",
+  "license": "ISC",
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
